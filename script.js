@@ -89,3 +89,5 @@ function checkSavings() {
     }
 };
 checkSavings();
+
+// что то сделали
