@@ -24,8 +24,8 @@ function chooseExpenses() {
         let a = prompt("Введите обязательную статью расходов в этом месяце");
         let b = prompt("Во сколько это обойдется?"); 
     
-        if ((typeof(a)) === "string" &&  (typeof(a)) != null && (typeof(b)) != null
-            && a != '' && b != '' && a.length < 50)  {
+        if (isNaN(a) &&  (typeof(a)) != null && (typeof(b)) != null
+            && a != '' && b != '' && a.length < 50 && !isNaN(b))  {
             console.log('Done!');
             appData.expenses[a] = b;
         } else {
@@ -35,6 +35,20 @@ function chooseExpenses() {
 };
 
 chooseExpenses();
+
+function chooseOptExpensec(){
+    for (let q = 0; q < 3; q++){
+    let c = prompt("Статья необезательных расходов");
+
+    if (isNaN(c) && (typeof(c)) != null && (typeof(c)) != '') {
+        appData.optionalExpenses[q+1] =c;
+        console.log("kaif")
+    } else{
+       q--;
+    }
+}
+};
+chooseOptExpensec();
 
 // let i = 0;
 // while (i < 2) {
@@ -64,21 +78,24 @@ chooseExpenses();
 //     }
 // }
 // while (i < 2);
-appData.moneyPerDay = (appData.budget / 30).toFixed();
 
-console.log(appData);
-
-alert("Ваш бюджет на день: " + appData.moneyPerDay);
-
-if (appData.moneyPerDay < 100) {
-    console.log("Минимальный уровень достатка");
-} else if (appData.moneyPerDay > 100 && appData.moneyPerDay <2000) {
-    console.log("Средний уровень достатка");
-} else if (appData.moneyPerDay > 2000) {
-    console.log("Высокий уровень достатка");
-} else {
-    console.log("Что-то пошло не так");
+function detectDayBudget (){
+    appData.moneyPerDay = (appData.budget / 30).toFixed();
+    alert("Ваш бюджет на день: " + appData.moneyPerDay);
 };
+// detectDayBudget();
+function detectLevel(){
+    if (appData.moneyPerDay < 100) {
+        console.log("Минимальный уровень достатка");
+    } else if (appData.moneyPerDay > 100 && appData.moneyPerDay <2000) {
+        console.log("Средний уровень достатка");
+    } else if (appData.moneyPerDay > 2000) {
+        console.log("Высокий уровень достатка");
+    } else {
+        console.log("Что-то пошло не так");
+    };
+};
+
 
 function checkSavings() {
     if(appData.savings == true) {
@@ -88,6 +105,6 @@ function checkSavings() {
         alert("Доход с депозита в мес. равен " + appData.mothIncome);   
     }
 };
-checkSavings();
+// checkSavings();
 
-// что то сделали
+console.log(appData);
